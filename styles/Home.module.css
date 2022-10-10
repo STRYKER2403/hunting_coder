@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
 
 .footer {
@@ -53,7 +53,7 @@
 }
 
 .description {
-  margin: 3rem 0;
+  
   line-height: 1.5;
   font-size: 1.5rem;
 }
@@ -130,15 +130,10 @@
   }
 }
 
-.mainnav ul{
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding-top: 30px;
-  
+.myImg{
+  border-radius: 10px;
 }
 
-.mainnav ul li{
-  margin:0px 25px;
-  font-weight: bold;
+.ImageWrap{
+  padding: 30px 0px;
 }
