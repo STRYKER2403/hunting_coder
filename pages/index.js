@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 
@@ -33,7 +32,7 @@ export default function Home() {
         </h1>
 
         <div className={styles.ImageWrap}>
-        <Image className={styles.myImg} src="/homeImg.jpg" width={240} height={160}></Image>
+        <img className={styles.myImg} src="/homeImg.jpg" width={240} height={160}></img>
         </div>
 
         <p className={styles.description}>

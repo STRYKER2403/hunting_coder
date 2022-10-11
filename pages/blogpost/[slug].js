@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import styles from '../../styles/blogpost.module.css'
+const fs = require('fs');
 
-const slug = (props) => {
+const Slug = (props) => {
   
   const blog = props.MyBlog;
 
@@ -19,16 +20,25 @@ const slug = (props) => {
   )
 }
 
-// For Server Side Rendering
-export async function getServerSideProps(context) {
-  const { slug } = context.query;
-
-  let data = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`)
-  let MyBlog = await data.json();
-
+export async function getStaticPaths() {
   return {
-    props: {MyBlog},
+    paths: [
+      { params: {slug:"how-to-learn-flask"} }, 
+      { params: {slug:"how-to-learn-javascript"} },
+      { params: {slug:"how-to-learn-nextjs"} }
+    ],
+    fallback: false, 
   }
 }
 
-export default slug
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+
+  let MyBlog = await fs.promises.readFile(`blogdata/${slug}.json`,"utf-8")
+
+  return {
+    props: {MyBlog: JSON.parse(MyBlog)},
+  }
+}
+
+export default Slug
