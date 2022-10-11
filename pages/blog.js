@@ -2,17 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from '../styles/blog.module.css'
 
-const Blog = () => {
-  const [blogs, setblogs] = useState([]);
+const Blog = (props) => {
+  // const [blogs, setblogs] = useState(props.allBlogs);
 
-  useEffect(() => {
- 
-    fetch("http://localhost:3000/api/blogs").then((a)=> a.json())
-    .then((parsed)=>{
-      //  console.log(parsed)
-       setblogs(parsed)});
-      
-  }, []);
+ const blogs = props.allBlogs; 
   
   return (
     <div>
@@ -27,6 +20,16 @@ const Blog = () => {
           </main>          
         </div>
   )
+}
+
+// For Server Side Rendering
+export async function getServerSideProps(context) {
+  let data = await fetch("http://localhost:3000/api/blogs");
+  let allBlogs = await data.json();
+
+  return {
+    props: {allBlogs}, 
+  }
 }
 
 export default Blog
